@@ -34,9 +34,9 @@ struct SettingsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
             HStack(spacing: 14) {
-                Image(systemName: "computermouse.fill").font(.system(size: 36)).foregroundStyle(mint)
+                Image(systemName: model.selected?.isPointer == false ? "keyboard.fill" : "computermouse.fill").font(.system(size: 36)).foregroundStyle(mint)
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("Mouse controls").font(.title.bold())
+                    Text(model.selected?.isPointer == false ? "Keyboard" : "Mouse controls").font(.title.bold())
                     Text(model.selected?.name ?? "Logitech + OpenLogi").foregroundStyle(.secondary)
                 }
                 Spacer()
@@ -49,10 +49,11 @@ struct SettingsView: View {
                 if model.busy { ProgressView().controlSize(.small) }
                 Button { model.refresh() } label: { Image(systemName: "arrow.clockwise") }.disabled(model.busy)
             }
-            Picker("Mouse", selection: Binding(get: { model.preferences.device }, set: { model.selectDevice($0) })) {
-                if model.inventory?.mice.contains(where: { $0.id == model.preferences.device }) != true { Text("Select a connected mouse").tag(model.preferences.device) }
-                ForEach(model.inventory?.mice ?? []) { device in Text(device.name + (device.online ? "" : " · offline")).tag(device.id) }
+            Picker("Device", selection: Binding(get: { model.preferences.device }, set: { model.selectDevice($0) })) {
+                if model.inventory?.devices.contains(where: { $0.id == model.preferences.device }) != true { Text("Select a connected device").tag(model.preferences.device) }
+                ForEach(model.inventory?.devices ?? []) { device in Text(device.name + (device.online ? "" : " · offline")).tag(device.id) }
             }.disabled(model.busy)
+            if model.selected?.isPointer != false {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
                     Text("Pointer speed").font(.headline); Spacer()
@@ -88,13 +89,38 @@ struct SettingsView: View {
                 Text("Mode and sensitivity apply separately. Wheel torque stays untouched.").font(.caption).foregroundStyle(.secondary)
             }.padding(16).background(.white.opacity(0.055), in: RoundedRectangle(cornerRadius: 14))
                 .disabled(!model.ready || model.wheel == nil || model.busy)
-            Text(model.notice.isEmpty ? "Changes are temporary. OpenLogi's saved profiles may reapply their settings." : model.notice).font(.caption).foregroundStyle(model.notice.isEmpty ? .secondary : .primary).lineLimit(3).frame(minHeight: 32, alignment: .topLeading)
+            } else {
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack {
+                        Label("Keyboard status", systemImage: "keyboard").font(.headline)
+                        Spacer()
+                        Text(model.ready ? "Connected" : "Unavailable").foregroundStyle(.secondary)
+                    }
+                    HStack {
+                        Label("Battery", systemImage: "battery.75percent")
+                        Spacer()
+                        Text(model.battery).monospacedDigit()
+                    }
+                    HStack {
+                        Text("Power state")
+                        Spacer()
+                        Text(model.ready ? (model.selected?.battery?.status?.capitalized ?? "Unknown") : "Unavailable").foregroundStyle(.secondary)
+                    }
+                }.padding(16).background(.white.opacity(0.055), in: RoundedRectangle(cornerRadius: 14))
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Keys & profiles").font(.headline)
+                    Text("Edit function keys and saved mappings in OpenLogi. Its current integration API provides keyboard status but no keyboard-setting commands.").font(.callout).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                    Button("Open OpenLogi for key mappings ↗") { model.openOpenLogi() }
+                    Text("Backlight, Fn lock and Easy-Switch controls are not available through this connection.").font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                }.padding(16).background(.white.opacity(0.055), in: RoundedRectangle(cornerRadius: 14))
+            }
+            Text(model.notice.isEmpty ? (model.selected?.isPointer == false ? "Keyboard status refreshes automatically through OpenLogi." : "Changes are temporary. OpenLogi's saved profiles may reapply their settings.") : model.notice).font(.caption).foregroundStyle(model.notice.isEmpty ? .secondary : .primary).lineLimit(3).frame(minHeight: 32, alignment: .topLeading)
             Spacer(minLength: 0)
             HStack {
                 Button("Choose OpenLogi…") { model.chooseApplication() }.disabled(model.busy)
-                Button("Profiles & buttons ↗") { model.openOpenLogi() }
+                Button("OpenLogi ↗") { model.openOpenLogi() }
                 Spacer()
-                Text("Logitech module · 0.1.1").font(.caption2).foregroundStyle(.secondary)
+                Text("Logitech module · 0.2.0").font(.caption2).foregroundStyle(.secondary)
             }
         }.padding(24).frame(width: 640, height: 590).background(Color(red: 0.065, green: 0.083, blue: 0.115)).preferredColorScheme(.dark)
             .onChange(of: model.dpi?.current) { _, value in if let value { chosenDPI = value } }
@@ -102,4 +128,40 @@ struct SettingsView: View {
             .onChange(of: model.wheel?.autoDisengage) { _, value in if let value { threshold = value } }
             .onAppear { if let dpi = model.dpi { chosenDPI = dpi.current }; if let wheel = model.wheel { chosenMode = wheel.mode.lowercased(); threshold = wheel.autoDisengage } }
     }
+}
+
+func keyboardDiagram(name: String, battery: String, connected: Bool) -> PluginDiagram {
+    let accent = connected ? "#72E2C1" : "#8D99AB"
+    var elements: [PluginDiagramElement] = [
+        .init(.box, x: 0, y: 0, w: 640, h: 360, fill: "#11161E", radius: 18),
+        .init(.text, x: 28, y: 22, w: 360, h: 27, fill: "#ECF3FC", text: name, font: 22),
+        .init(.text, x: 440, y: 24, w: 170, h: 23, fill: accent, text: connected ? "CONNECTED" : "UNAVAILABLE", font: 13),
+        .init(.box, x: 28, y: 79, w: 584, h: 173, fill: "#242D39", stroke: "#455164", radius: 16),
+        .init(.box, x: 28, y: 275, w: 195, h: 59, fill: "#1B2330", radius: 12),
+        .init(.text, x: 40, y: 283, w: 171, h: 15, fill: "#8D99AB", text: connected ? "BATTERY" : "LAST KNOWN BATTERY", font: 10),
+        .init(.text, x: 40, y: 302, w: 171, h: 25, fill: accent, text: battery, font: 23),
+        .init(.text, x: 247, y: 281, w: 350, h: 22, fill: "#ECF3FC", text: "Keys & profiles in OpenLogi", font: 18),
+        .init(.text, x: 247, y: 310, w: 350, h: 18, fill: "#8D99AB", text: "Live status · automatic refresh", font: 12)
+    ]
+    let rows = [
+        ["esc", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12"],
+        ["~", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "−", "+"],
+        ["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]"],
+        ["caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "↵"]
+    ]
+    for (row, keys) in rows.enumerated() {
+        for (col, key) in keys.enumerated() {
+            let x = 41.0 + Double(col) * 33, y = 91.0 + Double(row) * 29
+            elements.append(.init(.box, x: x, y: y, w: 29, h: 24, fill: "#111820", radius: 5))
+            // Only the function row and home keys need labels at Nook scale.
+            if row == 0 || (row == 3 && (col == 4 || col == 7)) {
+                elements.append(.init(.text, x: x, y: y + 5, w: 29, h: 14, fill: row == 0 ? accent : "#8D99AB", text: key, font: 9))
+            }
+        }
+    }
+    elements.append(.init(.box, x: 146, y: 211, w: 217, h: 25, fill: "#111820", radius: 5))
+    for row in 0..<5 { for col in 0..<4 {
+        elements.append(.init(.box, x: 480 + Double(col) * 29, y: 91 + Double(row) * 29, w: 25, h: 24, fill: "#111820", radius: 5))
+    } }
+    return .init(id: "keyboard", title: "Keyboard overview", width: 640, height: 360, summary: "\(name). \(connected ? "Connected" : "Unavailable"). Battery \(battery). Key mappings open in OpenLogi.", elements: elements)
 }

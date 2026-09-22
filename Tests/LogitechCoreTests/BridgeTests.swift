@@ -64,6 +64,29 @@ final class BridgeTests: XCTestCase {
         do { _ = try await LogitechBridge(runner:other).setDPI(exe,id:id,value:1600); XCTFail("ambiguous target") } catch {}
         let calls = await other.calls; XCTAssertEqual(calls.count,1)
     }
+    func testKeyboardCanBeSelectedButRejectsMouseWrites() async throws {
+        let keyboard = inventory.replacingOccurrences(of: "Fixture Mouse", with: "Fixture Keyboard").replacingOccurrences(of: "\"pointer\":true", with: "\"pointer\":false,\"buttons\":true")
+        let runner = ScriptedRunner([keyboard, keyboard, keyboard])
+        let bridge = LogitechBridge(runner: runner)
+        let found = try await bridge.inventory(exe)
+        let selected = try found.target(id)
+        XCTAssertTrue(selected.isKeyboard)
+        XCTAssertEqual(selected.selectionAction.count, 63)
+        XCTAssertEqual(selected.selectionAction, try found.target(id).selectionAction)
+        XCTAssertEqual(selected.battery?.percentage, 35)
+        XCTAssertFalse(selected.isPointer)
+        do { _ = try await bridge.setDPI(exe, id: id, value: 1600); XCTFail("keyboard must reject DPI") } catch {}
+        do { _ = try await bridge.setWheel(exe, id: id, mode: "free", threshold: nil); XCTFail("keyboard must reject wheel") } catch {}
+        let calls = await runner.calls
+        XCTAssertEqual(calls, Array(repeating: ["control", "devices"], count: 3))
+    }
+    func testOfflineKeyboardCannotBeRetargetedAndUnknownBatteryStaysUnknown() async throws {
+        let offline = inventory.replacingOccurrences(of: "\"online\":true", with: "\"online\":false").replacingOccurrences(of: "\"percentage\":35", with: "\"percentage\":null").replacingOccurrences(of: "\"pointer\":true", with: "\"pointer\":false,\"buttons\":true")
+        let found = try await LogitechBridge(runner: ScriptedRunner([offline])).inventory(exe)
+        XCTAssertNil(found.devices.first?.battery?.percentage)
+        XCTAssertThrowsError(try found.target(id))
+        XCTAssertThrowsError(try found.target("other"))
+    }
     func testRunnerFailureAdviceDistinguishesReadsFromWrites() {
         XCTAssertTrue(ProcessRunner.failureAdvice(arguments: ["control", "dpi", "--device", id]).contains("read-only"))
         for option in ["--set", "--mode", "--threshold"] {

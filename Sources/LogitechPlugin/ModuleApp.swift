@@ -53,15 +53,16 @@ struct Preferences: Codable {
             emit("ready", features: ["actions-v1", "dashboard-v1", "panels-v1", "diagrams-v1"])
             let target = PluginParameter("device", .string)
             send(.init(.register, registration: .init(actions: [
-                .init("read_status", title: "Read Logitech mouse status", output: .init([.init("connected", .boolean), .init("device", .string), .init("message", .string)])),
+                .init("read_status", title: "Read Logitech device status", output: .init([.init("connected", .boolean), .init("device", .string), .init("message", .string)])),
                 .init("set_dpi", title: "Set Logitech mouse DPI", input: .init([target, .init("dpi", .number, minimum: 1, maximum: 65535)]), output: .init([.init("message", .string)]), effect: .externalChange, timeoutSeconds: 60),
                 .init("set_wheel_mode", title: "Set Logitech wheel mode", input: .init([target, .init("mode", .string)]), output: .init([.init("message", .string)]), effect: .externalChange, timeoutSeconds: 60)
-            ], channels: [.init("status", title: "Logitech mouse status", kind: .state, schema: .init([.init("connected", .boolean), .init("device", .string), .init("message", .string)]))])))
+            ], channels: [.init("status", title: "Logitech device status", kind: .state, schema: .init([.init("connected", .boolean), .init("device", .string), .init("message", .string)]))])))
             refresh(); publish(); return
         }
         guard session == message.session else { NSApp.terminate(nil); return }
         if message.type == "visibility" { visible = message.visible ?? false }
         if message.type == "action" {
+            if let action = message.action, let device = inventory?.devices.first(where: { $0.selectionAction == action }) { selectDevice(device.id) }
             if ["configure", "controls"].contains(message.action ?? "") { showWindow() }
             if message.action == "refresh" { refresh() }
             if message.action == "open_app" { openOpenLogi() }
@@ -82,7 +83,7 @@ struct Preferences: Codable {
         } else { send(.init(.update, requestID: bus.requestID, update: .init(.failed, message: "Unsupported action or invalid setting."))) }
     }
     var values: [String: PluginValue] { ["connected": .boolean(ready && !busy), "device": .string(preferences.device), "message": .string(String(status.prefix(280)))] }
-    func selectDevice(_ id: String) { guard !busy else { return }; preferences.device = id; save(); ready = false; dpi = nil; wheel = nil; refresh() }
+    func selectDevice(_ id: String) { guard !busy else { return }; preferences.device = id; save(); ready = false; dpi = nil; wheel = nil; notice = ""; refresh() }
     func chooseApplication() {
         guard !busy else { return }
         let panel = NSOpenPanel(); panel.allowedContentTypes = [.applicationBundle]; panel.canChooseDirectories = false
@@ -100,14 +101,17 @@ struct Preferences: Codable {
             defer { busy = false; publish() }
             do {
                 let found = try await bridge.inventory(executable); inventory = found
-                if preferences.device.isEmpty, let first = found.mice.first(where: { $0.online }) { preferences.device = first.id; save() }
-                guard !found.mice.isEmpty else { throw BridgeProblem("No mouse is visible to OpenLogi. Check its agent permissions and your mouse connection.") }
+                if preferences.device.isEmpty, let first = found.devices.first(where: { $0.online }) { preferences.device = first.id; save() }
+                guard !found.devices.isEmpty else { throw BridgeProblem("No device is visible to OpenLogi. Check its agent permissions and your device connection.") }
                 let target = try found.target(preferences.device)
-                let currentDPI = try? await bridge.dpi(executable, id: target.id)
-                let currentWheel = try? await bridge.wheel(executable, id: target.id)
+                var currentDPI: DPI?, currentWheel: Wheel?
+                if target.isPointer {
+                    currentDPI = try? await bridge.dpi(executable, id: target.id)
+                    currentWheel = try? await bridge.wheel(executable, id: target.id)
+                }
                 dpi = currentDPI; wheel = currentWheel; ready = true; lastRead = Date()
                 status = "\(target.name) · \(battery) battery"
-                if currentDPI == nil && currentWheel == nil { status += " · settings unavailable" }
+                if target.isPointer && currentDPI == nil && currentWheel == nil { status += " · settings unavailable" }
             } catch { unavailable(error) }
         }
     }
@@ -152,18 +156,18 @@ struct Preferences: Codable {
     }
     func publish() {
         let snapshot = PluginSnapshot(title: selected?.name ?? "Logitech", status: status,
-            activity: ready ? "Mouse · \(dpi.map { "\($0.current) DPI" } ?? battery)" : "Logitech · unavailable",
+            activity: ready ? (selected?.isPointer == true ? "Mouse · \(dpi.map { "\($0.current) DPI" } ?? battery)" : "Keyboard · \(battery)") : "Logitech · unavailable",
             fields: [.init(ready ? "Battery" : "Last known battery", battery, symbol: "battery.75percent"), .init("Connection", ready ? "OpenLogi" : "Unavailable")],
-            actions: [.init("controls", "Mouse controls", symbol: "slider.horizontal.3"), .init("refresh", "Refresh", enabled: !busy, symbol: "arrow.clockwise"), .init("open_app", "OpenLogi", symbol: "arrow.up.forward.app")],
+            actions: (inventory?.devices.prefix(9).map { PluginAction($0.selectionAction, $0.name, enabled: !busy, symbol: $0.isPointer ? "computermouse" : "keyboard") } ?? []) + [.init("controls", "Device controls", symbol: "slider.horizontal.3"), .init("refresh", "Refresh", enabled: !busy, symbol: "arrow.clockwise"), .init("open_app", "OpenLogi", symbol: "arrow.up.forward.app")],
             badge: busy ? "Updating" : ready ? "Connected" : "Setup needed",
-            panels: [.init("mouse", "Mouse", diagrams: [mouseDiagram(dpi: dpi?.current, wheel: wheel?.mode, battery: battery, connected: ready)]),
-                     .init("connection", "Connection", sections: [.init("OpenLogi", preferences.application), .init("Last verified", lastRead?.formatted(date: .omitted, time: .standard) ?? "No live response yet"), .init("Settings ownership", "Temporary mouse adjustments here. OpenLogi owns saved profiles, gestures and button mappings."), .init("Latest action", notice.isEmpty ? "No settings changed in this session." : notice)])])
+            panels: [.init("device", "Device", diagrams: [selected?.isPointer == false ? keyboardDiagram(name: selected?.name ?? "Keyboard", battery: battery, connected: ready) : mouseDiagram(dpi: dpi?.current, wheel: wheel?.mode, battery: battery, connected: ready)]),
+                     .init("connection", "Connection", sections: [.init("OpenLogi", preferences.application), .init("Last verified", lastRead?.formatted(date: .omitted, time: .standard) ?? "No live response yet"), .init("Settings ownership", "Mouse adjustments here; keyboard status here. OpenLogi owns saved profiles and key/button mappings."), .init("Latest action", notice.isEmpty ? "No settings changed in this session." : notice)])])
         emit("snapshot", snapshot: snapshot); send(.init(.publish, address: .init(moduleID, "status"), values: values, lifetime: 8))
     }
     func showWindow() {
         if window == nil {
             let w = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 640, height: 590), styleMask: [.titled, .closable, .miniaturizable], backing: .buffered, defer: false)
-            w.title = "Logitech mouse controls"; w.contentView = NSHostingView(rootView: SettingsView(model: self)); w.isReleasedWhenClosed = false; w.center(); window = w
+            w.title = "Logitech device controls"; w.contentView = NSHostingView(rootView: SettingsView(model: self)); w.isReleasedWhenClosed = false; w.center(); window = w
         }
         window?.makeKeyAndOrderFront(nil); NSApp.activate(ignoringOtherApps: true)
     }

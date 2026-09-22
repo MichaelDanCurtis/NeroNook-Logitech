@@ -1,4 +1,5 @@
 import Foundation
+import CryptoKit
 
 public struct BridgeProblem: LocalizedError, Sendable {
     public let message: String
@@ -11,8 +12,11 @@ public struct Device: Decodable, Identifiable, Sendable {
     public let online: Bool
     public let battery: Battery?
     public let capabilities: Capabilities?
-    public struct Battery: Decodable, Sendable { public let percentage: Int? }
-    public struct Capabilities: Decodable, Sendable { public let pointer: Bool? }
+    public var isPointer: Bool { capabilities?.pointer == true }
+    public var isKeyboard: Bool { capabilities?.pointer == false && capabilities?.buttons == true }
+    public var selectionAction: String { "device_" + SHA256.hash(data: Data(id.utf8)).prefix(28).map { String(format: "%02x", $0) }.joined() }
+    public struct Battery: Decodable, Sendable { public let percentage: Int?; public let status: String? }
+    public struct Capabilities: Decodable, Sendable { public let pointer: Bool?; public let buttons: Bool? }
 }
 public struct Inventory: Decodable, Sendable {
     public let schemaVersion: Int
@@ -23,9 +27,13 @@ public struct Inventory: Decodable, Sendable {
     public var mice: [Device] { devices.filter { $0.capabilities?.pointer == true } }
     public func target(_ id: String) throws -> Device {
         let matches = devices.filter { $0.id == id }
-        guard inventoryHealth == "Ready", matches.count == 1, matches[0].online,
-              matches[0].capabilities?.pointer == true else { throw BridgeProblem("That mouse is unavailable or ambiguous. Refresh and select it again.") }
+        guard inventoryHealth == "Ready", matches.count == 1, matches[0].online else { throw BridgeProblem("That device is unavailable or ambiguous. Refresh and select it again.") }
         return matches[0]
+    }
+    public func pointerTarget(_ id: String) throws -> Device {
+        let device = try target(id)
+        guard device.isPointer else { throw BridgeProblem("This setting requires a mouse. No change was attempted.") }
+        return device
     }
 }
 public struct DPI: Decodable, Sendable {
@@ -72,7 +80,7 @@ public actor LogitechBridge {
         try validate(try await command(exe, ["smartshift", "--device", id], as: Setting<Wheel>.self), id: id, written: false)
     }
     public func setDPI(_ exe: URL, id: String, value: Int) async throws -> DPI {
-        _ = try await inventory(exe).target(id)
+        _ = try await inventory(exe).pointerTarget(id)
         let before = try await dpi(exe, id: id)
         guard before.capabilities.values.contains(value) else { throw BridgeProblem("That DPI is not supported by this mouse.") }
         let after = try validate(try await command(exe, ["dpi", "--device", id, "--set", String(value)], as: Setting<DPI>.self), id: id, written: true)
@@ -81,7 +89,7 @@ public actor LogitechBridge {
     }
     public func setWheel(_ exe: URL, id: String, mode: String?, threshold: Int?) async throws -> Wheel {
         guard mode != nil || threshold != nil, mode == nil || ["free", "ratchet"].contains(mode!), threshold == nil || (1...255).contains(threshold!) else { throw BridgeProblem("Choose a valid wheel mode or sensitivity (1–255).") }
-        _ = try await inventory(exe).target(id)
+        _ = try await inventory(exe).pointerTarget(id)
         var args = ["smartshift", "--device", id]
         if let mode { args += ["--mode", mode] }; if let threshold { args += ["--threshold", String(threshold)] }
         let after = try validate(try await command(exe, args, as: Setting<Wheel>.self), id: id, written: true)
