@@ -1,6 +1,6 @@
 # Logitech module status
 
-0.1.0 development preview, September 22, 2026.
+0.1.1 development preview, September 22, 2026.
 
 ## Verified
 
@@ -9,12 +9,12 @@
 - Installed and updated through NeroNook's signed-package review. Host reports Running, visible on both displays; built-in display selection and native dashboard inspected.
 - Separate controls window visually inspected. Missing device disables apply controls and shows unavailable settings.
 
-## Hardware acceptance pending
+## Live hardware acceptance — repaired September 22
 
-A local OpenLogi source build at `c65f4d7bf31da8f2e48d6d129ee2b315c330567d` is installed at `/Applications/OpenLogi.app` for protocol 32. The official 0.8.6 app and configuration were backed up before replacement. This is a local integration build, not an official upstream release.
+OpenLogi's agent log identified Input Monitoring denial. The owner renewed the grant. The local build shared the official 0.8.6 version string, leaving OpenLogi's registration-version marker stale across the signing change. Preserved that marker as a timestamped backup, relaunched the GUI to let its own SMAppService code re-register, stopped the old unmanaged agent and started the registered service. launchd now reports Running with the installed development TeamIdentifier 2GFVXB3249 and a supervised agent. Full reboot acceptance remains untested.
 
-The matching agent responds with protocol 32 / Ready but an empty device list. macOS permission renewal is pending for the locally signed OpenLogi Agent. Accessibility was reported unapproved by OpenLogi. Input Monitoring and actual device discovery must be checked after the owner renews permissions. No physical mouse setting was changed during this module acceptance.
+Actual agent inventory now reports the MX Master 3S and MX Keys S for Mac online. The module correctly selects the mouse. Fixed a separate battery decoding bug: OpenLogi emits `percentage`, whereas the first module and its fixture incorrectly used `percent`. The corrected test uses the actual field name.
 
-The agent was started directly after its existing login-item registration retained the official signing identity. Persistent login-item registration and restart/reboot recovery must also be verified; a running process is not proof of durable startup.
+Installed 0.1.1 and verified the native controls show 30% battery, 2,000 DPI and tactile mode. Clicked Apply DPI at the existing 2000 value: the module displayed "Read-back confirmed." Clicked Apply mode at existing Ratchet: it displayed "Other fields were preserved." The CLI also confirmed same-value DPI, mode and threshold writes with threshold 20 and torque 0 preserved. No test intentionally changed the user's settings. Eight bridge tests and the read-only SDK harness pass.
 
-Remaining gates: real mouse inventory and settings, DPI apply/read-back, partial wheel apply/read-back preserving unspecified fields, reconnect and login-item recovery. Button remapping, gestures and per-app profiles stay in OpenLogi for this first version. SDK actions are implemented, but physical Stream Deck invocation remains a separate acceptance step.
+The matching protocol 32 OpenLogi source build is c65f4d7bf31da8f2e48d6d129ee2b315c330567d. Official 0.8.6 and configuration backups remain preserved. This is a local integration build, not an official upstream release. Button mappings, gestures and profiles remain in OpenLogi. Physical Stream Deck invocation, sleep/device reconnect and a full login/reboot remain separate acceptance steps.

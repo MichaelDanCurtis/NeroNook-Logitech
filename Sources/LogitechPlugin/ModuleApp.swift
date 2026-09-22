@@ -30,7 +30,7 @@ struct Preferences: Codable {
     let hosted = CommandLine.arguments.contains("--neronook-plugin")
     var executable: URL { URL(fileURLWithPath: preferences.application).appendingPathComponent("Contents/MacOS/openlogi") }
     var selected: Device? { inventory?.devices.first { $0.id == preferences.device } }
-    var battery: String { selected?.battery?.percent.map { "\($0)%" } ?? "Unknown" }
+    var battery: String { selected?.battery?.percentage.map { "\($0)%" } ?? "Unknown" }
     private var storage: URL? { try? PluginStorage.directory(id: moduleID).appendingPathComponent("settings.json") }
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)

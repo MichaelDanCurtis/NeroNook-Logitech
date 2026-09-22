@@ -11,7 +11,7 @@ public struct Device: Decodable, Identifiable, Sendable {
     public let online: Bool
     public let battery: Battery?
     public let capabilities: Capabilities?
-    public struct Battery: Decodable, Sendable { public let percent: Int? }
+    public struct Battery: Decodable, Sendable { public let percentage: Int? }
     public struct Capabilities: Decodable, Sendable { public let pointer: Bool? }
 }
 public struct Inventory: Decodable, Sendable {

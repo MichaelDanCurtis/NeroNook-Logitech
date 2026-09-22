@@ -1,6 +1,6 @@
 # Logitech Module for NeroNook
 
-Independent native macOS plugin, version 0.1.0. Uses the installed OpenLogi application and its agent to read mouse status and apply temporary DPI or SmartShift adjustments. NeroNook remains usable without this module, and the module builds without NeroNook source.
+Independent native macOS plugin, version 0.1.1. Uses the installed OpenLogi application and its agent to read mouse status and apply temporary DPI or SmartShift adjustments. NeroNook remains usable without this module, and the module builds without NeroNook source.
 
 ## Included
 

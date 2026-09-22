@@ -94,7 +94,7 @@ struct SettingsView: View {
                 Button("Choose OpenLogi…") { model.chooseApplication() }.disabled(model.busy)
                 Button("Profiles & buttons ↗") { model.openOpenLogi() }
                 Spacer()
-                Text("Logitech module · 0.1.0").font(.caption2).foregroundStyle(.secondary)
+                Text("Logitech module · 0.1.1").font(.caption2).foregroundStyle(.secondary)
             }
         }.padding(24).frame(width: 640, height: 590).background(Color(red: 0.065, green: 0.083, blue: 0.115)).preferredColorScheme(.dark)
             .onChange(of: model.dpi?.current) { _, value in if let value { chosenDPI = value } }

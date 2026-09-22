@@ -14,13 +14,13 @@ private actor ScriptedRunner: CommandRunner {
 final class BridgeTests: XCTestCase {
     let exe = URL(fileURLWithPath: "/fixture/OpenLogi.app/Contents/MacOS/openlogi")
     let id = "direct 046d:b034"
-    var inventory: String { #"{"schema_version":1,"protocol_version":32,"agent_version":"fixture","inventory_health":"Ready","devices":[{"id":"direct 046d:b034","name":"Fixture Mouse","online":true,"battery":{"percent":35},"capabilities":{"pointer":true}}]}"# }
+    var inventory: String { #"{"schema_version":1,"protocol_version":32,"agent_version":"fixture","inventory_health":"Ready","devices":[{"id":"direct 046d:b034","name":"Fixture Mouse","online":true,"battery":{"percentage":35},"capabilities":{"pointer":true}}]}"# }
     func dpi(_ value: Int, written: Bool = false) -> String { "{\"schema_version\":1,\"device\":\"\(id)\",\"written\":\(written),\"current\":{\"current\":\(value),\"capabilities\":{\"values\":[800,1600,2000]}}}" }
     func testReadOnlyInventoryAndSettingsNeverIncludeWriteArguments() async throws {
         let runner = ScriptedRunner([inventory, dpi(2000)])
         let bridge = LogitechBridge(runner: runner)
         let found = try await bridge.inventory(exe)
-        XCTAssertEqual(found.mice.first?.battery?.percent, 35)
+        XCTAssertEqual(found.mice.first?.battery?.percentage, 35)
         let value = try await bridge.dpi(exe, id: id)
         XCTAssertEqual(value.current, 2000)
         let calls = await runner.calls
