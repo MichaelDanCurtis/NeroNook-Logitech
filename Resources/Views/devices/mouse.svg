@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="300" viewBox="0 0 280 300">
+<defs>
+<linearGradient id="body" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#667078"/><stop offset=".35" stop-color="#353e45"/><stop offset=".7" stop-color="#272d33"/><stop offset="1" stop-color="#171c20"/></linearGradient>
+<linearGradient id="left" x2=".9" y2=".6"><stop stop-color="#424b52"/><stop offset=".45" stop-color="#242c32"/><stop offset="1" stop-color="#11171b"/></linearGradient>
+<linearGradient id="click" x2=".8" y2="1"><stop stop-color="#626b72"/><stop offset=".55" stop-color="#424b52"/><stop offset="1" stop-color="#2f363d"/></linearGradient>
+<linearGradient id="metal"><stop stop-color="#4c555c"/><stop offset=".18" stop-color="#b1bec3"/><stop offset=".43" stop-color="#f0f4f1"/><stop offset=".65" stop-color="#a4b1b6"/><stop offset="1" stop-color="#535f66"/></linearGradient>
+<linearGradient id="seam" x2="1" y2="1"><stop stop-color="#a2abb2" stop-opacity=".55"/><stop offset="1" stop-color="#293139"/></linearGradient>
+<clipPath id="texture"><path d="M83 99C58 116 56 156 44 190C31 218 20 229 34 238L100 269L125 224L106 157Z"/></clipPath>
+<pattern id="ribs" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)"><path d="M0 1H7" stroke="#87929b" stroke-opacity=".12"/></pattern>
+</defs>
+<ellipse cx="139" cy="274" rx="99" ry="14" fill="#060a0e" opacity=".6"/>
+<!-- Sculpted thumb wing and asymmetric chassis. -->
+<path d="M91 29C124 8 186 11 208 38C230 65 238 127 230 194C225 246 202 275 156 280C112 286 89 273 67 260L30 242C15 232 30 216 39 194C47 175 48 145 58 111L72 52Z" fill="#11171c" stroke="#46515b" stroke-width="1.5"/>
+<path d="M86 46C83 81 69 108 61 139C52 173 54 189 43 211C32 229 25 232 40 238L92 265L124 248L137 160L108 58Z" fill="url(#left)"/>
+<path d="M29 206H133V279H29Z" fill="url(#ribs)" clip-path="url(#texture)"/>
+<path d="M94 32C119 12 181 18 200 36C224 61 231 121 225 189C221 240 202 265 164 271C137 275 110 269 94 253C70 231 72 198 75 168C80 133 79 112 78 82C77 62 81 44 94 32Z" fill="url(#body)" stroke="url(#seam)" stroke-width="1.2"/>
+<!-- Two sloping click plates and their central channel. -->
+<path d="M92 35C112 21 132 19 149 22L145 133C124 133 97 124 80 108L79 78C79 56 83 43 92 35Z" fill="url(#click)"/>
+<path d="M155 23C179 25 193 29 201 40C214 57 221 94 224 125C197 140 174 139 151 134Z" fill="url(#click)"/>
+<path d="M149 23L147 139M81 109C116 140 172 149 224 126" fill="none" stroke="#151c22" stroke-width="2"/>
+<!-- Milled MagSpeed wheel. -->
+<rect x="135" y="47" width="30" height="67" rx="13" fill="#10161b"/>
+<rect x="139" y="50" width="23" height="58" rx="8" fill="url(#metal)" stroke="#8f9da4" stroke-width=".5"/>
+<path d="M140 57h21m-21 4h21m-21 4h21m-21 4h21m-21 4h21m-21 4h21m-21 4h21m-21 4h21m-21 4h21m-21 4h21m-21 4h21m-21 4h21" stroke="#34434a" stroke-opacity=".62" stroke-width="1"/>
+<rect x="137" y="148" width="24" height="14" rx="7" fill="#131a1f" stroke="#505b63" stroke-width=".7"/>
+<circle cx="149" cy="184" r="1.8" fill="#9bd6b9" opacity=".8"/>
+<!-- Horizontal thumb wheel and two distinct navigation buttons. -->
+<g transform="rotate(13 62 141)"><rect x="48" y="112" width="21" height="52" rx="8" fill="#10161a"/><rect x="50" y="114" width="16" height="46" rx="5" fill="url(#metal)"/><path d="M51 120h14m-14 5h14m-14 5h14m-14 5h14m-14 5h14m-14 5h14m-14 5h14" stroke="#435058" stroke-width="1"/></g>
+<path d="M55 173L67 175L65 192L49 189Z" fill="#3b454b" stroke="#5c6870" stroke-width=".7"/>
+<path d="M48 195L64 198L61 214L42 208Z" fill="#303b42" stroke="#515e68" stroke-width=".7"/>
+<path d="M38 232L60 244" stroke="#98a6ae" stroke-opacity=".3" stroke-width="1.4" stroke-linecap="round"/>
+<path d="M102 253C127 270 181 272 202 249" fill="none" stroke="#727f88" opacity=".16"/>
+</svg>

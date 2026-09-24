@@ -1,167 +1,97 @@
 import SwiftUI
 import NookPluginSDK
+import LogitechCore
 
-func mouseDiagram(dpi: Int?, wheel: String?, battery: String, connected: Bool) -> PluginDiagram {
-    let accent = connected ? "#72E2C1" : "#8D99AB"
-    var elements: [PluginDiagramElement] = [
-        .init(.box, x: 0, y: 0, w: 640, h: 360, fill: "#11161E", radius: 18),
-        .init(.text, x: 28, y: 20, w: 310, h: 25, fill: "#8D99AB", text: "YOUR MOUSE · YOUR WAY", font: 12),
-        .init(.ellipse, x: 67, y: 307, w: 174, h: 13, fill: "#080B10"),
-        .init(.box, x: 75, y: 68, w: 159, h: 239, fill: "#242D39", stroke: "#455164", radius: 70),
-        .init(.box, x: 45, y: 164, w: 60, h: 126, fill: "#1C2531", radius: 28),
-        .init(.line, x: 155, y: 80, w: 0, h: 106, stroke: "#0C1118", weight: 2),
-        .init(.box, x: 144, y: 108, w: 22, h: 52, fill: accent, radius: 8),
-        .init(.box, x: 148, y: 180, w: 14, h: 18, fill: "#0C1118", radius: 6),
-        .init(.box, x: 61, y: 159, w: 12, h: 35, fill: "#5E6E83", radius: 5),
-        .init(.text, x: 73, y: 327, w: 186, h: 18, fill: "#8D99AB", text: "Powered by OpenLogi", font: 11),
-        .init(.box, x: 285, y: 66, w: 325, h: 106, fill: "#1B2330", radius: 14),
-        .init(.text, x: 309, y: 82, w: 255, h: 18, fill: "#8D99AB", text: "POINTER SPEED", font: 11),
-        .init(.text, x: 308, y: 110, w: 250, h: 40, fill: accent, text: dpi.map { "\($0) DPI" } ?? "Unavailable", font: 32),
-        .init(.box, x: 285, y: 185, w: 325, h: 82, fill: "#1B2330", radius: 14),
-        .init(.text, x: 309, y: 199, w: 250, h: 18, fill: "#8D99AB", text: "SMARTSHIFT WHEEL", font: 11),
-        .init(.text, x: 309, y: 226, w: 250, h: 26, fill: "#ECF3FC", text: wheel == "Ratchet" ? "Tactile scrolling" : wheel == "Free" ? "Free spinning" : "Unavailable", font: 22),
-        .init(.text, x: 306, y: 291, w: 260, h: 20, fill: "#8D99AB", text: "\(connected ? "Battery" : "Last known battery") · \(battery)", font: 14)
-    ]
-    for y in stride(from: 118.0, through: 148.0, by: 6) { elements.append(.init(.line, x: 148, y: y, w: 14, h: 0, stroke: "#1D594F", weight: 1)) }
-    return .init(id: "mouse", title: "Mouse overview", width: 640, height: 360, summary: "\(dpi.map { "\($0) DPI" } ?? "DPI unavailable"). Wheel \(wheel ?? "unavailable"). Battery \(battery).", elements: elements)
-}
-struct SettingsView: View {
-    @ObservedObject var model: ModuleApp
-    @State private var chosenDPI = 2000
-    @State private var chosenMode = "ratchet"
-    @State private var threshold = 20
-    private let mint = Color(red: 0.45, green: 0.89, blue: 0.76)
-    var body: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            HStack(spacing: 14) {
-                Image(systemName: model.selected?.isPointer == false ? "keyboard.fill" : "computermouse.fill").font(.system(size: 36)).foregroundStyle(mint)
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(model.selected?.isPointer == false ? "Keyboard" : "Mouse controls").font(.title.bold())
-                    Text(model.selected?.name ?? "Logitech + OpenLogi").foregroundStyle(.secondary)
-                }
-                Spacer()
-                Text(model.battery).font(.title2.monospacedDigit()).foregroundStyle(mint)
-            }
-            HStack {
-                Circle().fill(model.ready ? mint : .orange).frame(width: 7, height: 7)
-                Text(model.status).font(.caption).lineLimit(2)
-                Spacer()
-                if model.busy { ProgressView().controlSize(.small) }
-                Button { model.refresh() } label: { Image(systemName: "arrow.clockwise") }.disabled(model.busy)
-            }
-            Picker("Device", selection: Binding(get: { model.preferences.device }, set: { model.selectDevice($0) })) {
-                if model.inventory?.devices.contains(where: { $0.id == model.preferences.device }) != true { Text("Select a connected device").tag(model.preferences.device) }
-                ForEach(model.inventory?.devices ?? []) { device in Text(device.name + (device.online ? "" : " · offline")).tag(device.id) }
-            }.disabled(model.busy)
-            if model.selected?.isPointer != false {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    Text("Pointer speed").font(.headline); Spacer()
-                    Text(model.dpi.map { "Current · \($0.current) DPI" } ?? "Unavailable").foregroundStyle(.secondary).font(.caption)
-                }
-                HStack(spacing: 8) {
-                    ForEach([800, 1200, 1600, 2000, 3200], id: \.self) { value in
-                        Button("\(value)") { chosenDPI = value }.tint(chosenDPI == value ? mint : .gray)
-                            .disabled(model.dpi?.capabilities.values.contains(value) != true)
-                    }
-                }
-                HStack {
-                    Picker("DPI", selection: $chosenDPI) {
-                        if model.dpi?.capabilities.values.contains(chosenDPI) != true { Text("\(chosenDPI)").tag(chosenDPI) }
-                        ForEach(model.dpi?.capabilities.values ?? [], id: \.self) { Text("\($0)").tag($0) }
-                    }.frame(width: 200)
-                    Spacer()
-                    Button("Apply DPI") { model.applyDPI(chosenDPI) }.buttonStyle(.borderedProminent).tint(mint).foregroundStyle(.black)
-                        .disabled(!model.ready || model.dpi?.capabilities.values.contains(chosenDPI) != true || model.busy)
-                }
-            }.padding(16).background(.white.opacity(0.055), in: RoundedRectangle(cornerRadius: 14))
-            VStack(alignment: .leading, spacing: 12) {
-                HStack { Text("Scroll wheel").font(.headline); Spacer(); Text(model.wheel?.mode == "Free" ? "Free spinning" : model.wheel?.mode == "Ratchet" ? "Tactile" : "Unavailable").font(.caption).foregroundStyle(.secondary) }
-                HStack {
-                    Picker("Mode", selection: $chosenMode) { Text("Tactile").tag("ratchet"); Text("Free spin").tag("free") }.pickerStyle(.segmented)
-                    Button("Apply mode") { model.applyWheel(mode: chosenMode, threshold: nil) }
-                }
-                HStack {
-                    Stepper("Sensitivity · \(threshold == 255 ? "Always tactile" : String(threshold))", value: $threshold, in: 1...255)
-                    Spacer()
-                    Button("Apply sensitivity") { model.applyWheel(mode: nil, threshold: threshold) }
-                }
-                Text("Mode and sensitivity apply separately. Wheel torque stays untouched.").font(.caption).foregroundStyle(.secondary)
-            }.padding(16).background(.white.opacity(0.055), in: RoundedRectangle(cornerRadius: 14))
-                .disabled(!model.ready || model.wheel == nil || model.busy)
-            } else {
-                VStack(alignment: .leading, spacing: 16) {
-                    HStack {
-                        Label("Keyboard status", systemImage: "keyboard").font(.headline)
-                        Spacer()
-                        Text(model.ready ? "Connected" : "Unavailable").foregroundStyle(.secondary)
-                    }
-                    HStack {
-                        Label("Battery", systemImage: "battery.75percent")
-                        Spacer()
-                        Text(model.battery).monospacedDigit()
-                    }
-                    HStack {
-                        Text("Power state")
-                        Spacer()
-                        Text(model.ready ? (model.selected?.battery?.status?.capitalized ?? "Unknown") : "Unavailable").foregroundStyle(.secondary)
-                    }
-                }.padding(16).background(.white.opacity(0.055), in: RoundedRectangle(cornerRadius: 14))
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Keys & profiles").font(.headline)
-                    Text("Edit function keys and saved mappings in OpenLogi. Its current integration API provides keyboard status but no keyboard-setting commands.").font(.callout).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
-                    Button("Open OpenLogi for key mappings ↗") { model.openOpenLogi() }
-                    Text("Backlight, Fn lock and Easy-Switch controls are not available through this connection.").font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
-                }.padding(16).background(.white.opacity(0.055), in: RoundedRectangle(cornerRadius: 14))
-            }
-            Text(model.notice.isEmpty ? (model.selected?.isPointer == false ? "Keyboard status refreshes automatically through OpenLogi." : "Changes are temporary. OpenLogi's saved profiles may reapply their settings.") : model.notice).font(.caption).foregroundStyle(model.notice.isEmpty ? .secondary : .primary).lineLimit(3).frame(minHeight: 32, alignment: .topLeading)
-            Spacer(minLength: 0)
-            HStack {
-                Button("Choose OpenLogi…") { model.chooseApplication() }.disabled(model.busy)
-                Button("OpenLogi ↗") { model.openOpenLogi() }
-                Spacer()
-                Text("Logitech module · 0.2.0").font(.caption2).foregroundStyle(.secondary)
-            }
-        }.padding(24).frame(width: 640, height: 590).background(Color(red: 0.065, green: 0.083, blue: 0.115)).preferredColorScheme(.dark)
-            .onChange(of: model.dpi?.current) { _, value in if let value { chosenDPI = value } }
-            .onChange(of: model.wheel?.mode) { _, value in if let value { chosenMode = value.lowercased() } }
-            .onChange(of: model.wheel?.autoDisengage) { _, value in if let value { threshold = value } }
-            .onAppear { if let dpi = model.dpi { chosenDPI = dpi.current }; if let wheel = model.wheel { chosenMode = wheel.mode.lowercased(); threshold = wheel.autoDisengage } }
+@MainActor extension ModuleApp {
+    func surface(_ kind: DeviceKind) -> PluginCustomView {
+        let current = device(kind)
+        let candidates = inventory?.devices.filter { kind.matches($0) }.prefix(16).map { ["id": $0.id, "name": $0.name, "online": $0.online ? "true" : "false"] } ?? []
+        var state: [String: PluginValue] = [
+            "kind": .string(kind.rawValue), "device": .string(preferences.id(for: kind)),
+            "name": .string(current?.name ?? "Choose a \(kind.rawValue)"),
+            "devices": .string(String(decoding: (try? JSONEncoder().encode(candidates)) ?? Data("[]".utf8), as: UTF8.self)),
+            "ready": .boolean(ready(kind)), "busy": .boolean(busy), "battery": .string(battery(kind)),
+            "power": .string(current?.battery?.status?.capitalized ?? "Unknown"),
+            "notice": .string(notice), "status": .string(status),
+            "last_read": .string(lastRead?.formatted(date: .omitted, time: .standard) ?? "Never"),
+            "art": .string(current?.name.lowercased().contains(kind == .mouse ? "mx master 3" : "mx keys s") == true ? kind.rawValue : "generic")
+        ]
+        if kind == .mouse {
+            state["dpi"] = .number(Double(dpi?.current ?? 0))
+            state["dpi_values"] = .string(String(decoding: (try? JSONEncoder().encode(dpi?.capabilities.values ?? [])) ?? Data("[]".utf8), as: UTF8.self))
+            state["mode"] = .string(wheel?.mode.lowercased() ?? "")
+            state["threshold"] = .number(Double(wheel?.autoDisengage ?? 0))
+        }
+        let target = PluginParameter("device", .string)
+        return .init(entry: "devices/index.html", revision: "devices3", state: state, events: [
+            .init("select", input: .init([target])), .init("refresh"), .init("settings"), .init("mappings"),
+            .init("dpi", input: .init([target, .init("value", .number, minimum: 1, maximum: 65535)])),
+            .init("wheel", input: .init([target, .init("mode", .string)])),
+            .init("threshold", input: .init([target, .init("value", .number, minimum: 1, maximum: 255)]))
+        ])
     }
-}
-
-func keyboardDiagram(name: String, battery: String, connected: Bool) -> PluginDiagram {
-    let accent = connected ? "#72E2C1" : "#8D99AB"
-    var elements: [PluginDiagramElement] = [
-        .init(.box, x: 0, y: 0, w: 640, h: 360, fill: "#11161E", radius: 18),
-        .init(.text, x: 28, y: 22, w: 360, h: 27, fill: "#ECF3FC", text: name, font: 22),
-        .init(.text, x: 440, y: 24, w: 170, h: 23, fill: accent, text: connected ? "CONNECTED" : "UNAVAILABLE", font: 13),
-        .init(.box, x: 28, y: 79, w: 584, h: 173, fill: "#242D39", stroke: "#455164", radius: 16),
-        .init(.box, x: 28, y: 275, w: 195, h: 59, fill: "#1B2330", radius: 12),
-        .init(.text, x: 40, y: 283, w: 171, h: 15, fill: "#8D99AB", text: connected ? "BATTERY" : "LAST KNOWN BATTERY", font: 10),
-        .init(.text, x: 40, y: 302, w: 171, h: 25, fill: accent, text: battery, font: 23),
-        .init(.text, x: 247, y: 281, w: 350, h: 22, fill: "#ECF3FC", text: "Keys & profiles in OpenLogi", font: 18),
-        .init(.text, x: 247, y: 310, w: 350, h: 18, fill: "#8D99AB", text: "Live status · automatic refresh", font: 12)
-    ]
-    let rows = [
-        ["esc", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12"],
-        ["~", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "−", "+"],
-        ["tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]"],
-        ["caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "↵"]
-    ]
-    for (row, keys) in rows.enumerated() {
-        for (col, key) in keys.enumerated() {
-            let x = 41.0 + Double(col) * 33, y = 91.0 + Double(row) * 29
-            elements.append(.init(.box, x: x, y: y, w: 29, h: 24, fill: "#111820", radius: 5))
-            // Only the function row and home keys need labels at Nook scale.
-            if row == 0 || (row == 3 && (col == 4 || col == 7)) {
-                elements.append(.init(.text, x: x, y: y + 5, w: 29, h: 14, fill: row == 0 ? accent : "#8D99AB", text: key, font: 9))
+    func handleView(_ event: PluginViewEvent) throws {
+        guard let kind = DeviceKind(rawValue: event.panelID) else { throw BridgeProblem("Unknown device tab.") }
+        try surface(kind).validate(event)
+        func text(_ key: String) -> String { if case .string(let value) = event.values[key] { return value }; return "" }
+        func number() throws -> Int {
+            guard case .number(let value) = event.values["value"], value.isFinite, value.rounded() == value else { throw BridgeProblem("Choose a whole-number setting.") }
+            return Int(value)
+        }
+        switch event.name {
+        case "select": try selectDevice(text("device"), kind: kind)
+        case "refresh": refresh()
+        case "settings": showSetup = true; showWindow()
+        case "mappings": openOpenLogi()
+        case "dpi", "wheel", "threshold":
+            guard kind == .mouse, ready(kind), !busy else { throw BridgeProblem("Wait for a connected mouse before applying.") }
+            try preferences.validateTarget(text("device"), kind: kind, inventory: inventory)
+            if event.name == "dpi" {
+                let value = try number()
+                guard dpi?.capabilities.values.contains(value) == true else { throw BridgeProblem("That DPI is unavailable for this mouse.") }
+                applyDPI(value, device: text("device"))
+            } else {
+                guard wheel != nil else { throw BridgeProblem("Wheel settings are unavailable.") }
+                if event.name == "wheel" {
+                    guard ["free", "ratchet"].contains(text("mode")) else { throw BridgeProblem("Choose a supported wheel mode.") }
+                    applyWheel(mode: text("mode"), threshold: nil, device: text("device"))
+                } else { applyWheel(mode: nil, threshold: try number(), device: text("device")) }
             }
+        default: throw BridgeProblem("Unknown control.")
         }
     }
-    elements.append(.init(.box, x: 146, y: 211, w: 217, h: 25, fill: "#111820", radius: 5))
-    for row in 0..<5 { for col in 0..<4 {
-        elements.append(.init(.box, x: 480 + Double(col) * 29, y: 91 + Double(row) * 29, w: 25, h: 24, fill: "#111820", radius: 5))
-    } }
-    return .init(id: "keyboard", title: "Keyboard overview", width: 640, height: 360, summary: "\(name). \(connected ? "Connected" : "Unavailable"). Battery \(battery). Key mappings open in OpenLogi.", elements: elements)
+}
+struct DeviceWindow: View {
+    @ObservedObject var model: ModuleApp
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Text("Logitech").font(.headline)
+                Spacer()
+                Picker("Device type", selection: Binding(get: { model.preferences.tab }, set: { model.preferences.tab = $0; model.save() })) {
+                    Text("Mouse").tag(DeviceKind.mouse); Text("Keyboard").tag(DeviceKind.keyboard)
+                }.pickerStyle(.segmented).frame(width: 230)
+                Spacer()
+                Text("OpenLogi").font(.caption).foregroundStyle(.secondary)
+            }.padding(.horizontal, 20).frame(height: 40)
+            PluginWebSurface(root: Bundle.main.resourceURL!.appendingPathComponent("Views"), panelID: model.preferences.tab.rawValue, definition: model.surface(model.preferences.tab)) { event in
+                do { try model.handleView(event) } catch { model.notice = error.localizedDescription }
+            }.frame(width: 800, height: 450)
+        }.background(Color(red: 0.052, green: 0.068, blue: 0.088)).preferredColorScheme(.dark)
+        .sheet(isPresented: $model.showSetup) {
+            VStack(alignment: .leading, spacing: 16) {
+                Label("Logitech setup", systemImage: "gearshape").font(.title2.bold())
+                Text("OpenLogi connects your devices and owns saved profiles and mappings. NeroNook uses its agent connection for device status and temporary mouse adjustments.")
+                LabeledContent("Application", value: model.preferences.application).font(.callout).textSelection(.enabled)
+                LabeledContent("Last response", value: model.lastRead?.formatted() ?? "No response yet")
+                Text(model.status).foregroundStyle(.secondary)
+                Text("Keyboard backlight, Fn lock and host switching need an expanded OpenLogi integration. Those settings are not available in this version.").font(.callout)
+                HStack {
+                    Button("Choose OpenLogi…") { model.chooseApplication() }.disabled(model.busy)
+                    Button("Open OpenLogi") { model.openOpenLogi() }
+                    Spacer(); Button("Done") { model.showSetup = false }.keyboardShortcut(.defaultAction)
+                }
+            }.padding(24).frame(width: 580)
+        }
+    }
 }

@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="devices.css"><title>Logitech devices</title></head>
+<body><main>
+<header><div class="heading"><span class="eyebrow" id="category">YOUR DEVICES</span><select id="device" aria-label="Device"></select></div><div id="connection" class="connection">Connecting</div><button class="icon" id="refresh" aria-label="Refresh devices" title="Refresh devices">↻</button><button class="icon" id="settings" aria-label="Device setup" title="Device setup"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3 6 0 1 3 3 1 2 5-2 5-3 1-1 3H9l-1-3-3-1-2-5 2-5 3-1Z"/><circle cx="12" cy="12" r="3"/></svg></button></header>
+<section id="mouse" class="mouse content" hidden>
+<div class="hero"><img id="mouse-art" src="mouse.svg" alt="Original MX Master 3S illustration with sculpted thumb rest and metal scroll wheels"><div class="hero-caption"><span class="battery" id="mouse-battery">—</span><span id="mouse-power">Battery</span></div><button id="mouse-mappings" class="quiet">Buttons & gestures <span>↗</span></button></div>
+<div class="controls">
+<section class="card dpi"><div class="card-title"><label for="dpi">Pointer speed</label><span id="dpi-current" class="muted">Unavailable</span></div><div class="dpi-line"><select id="dpi" aria-label="Pointer speed DPI"></select><span>DPI</span><button id="apply-dpi" class="primary">Apply</button></div><div class="presets" id="presets" aria-label="DPI presets"></div></section>
+<section class="card"><div class="card-title"><span>MagSpeed wheel</span><span id="wheel-current" class="muted">Unavailable</span></div><div class="wheel-line"><div class="segments"><button id="ratchet" aria-pressed="false">Tactile</button><button id="free" aria-pressed="false">Free spin</button></div><button id="apply-wheel" class="secondary">Apply</button></div></section>
+<section class="card threshold"><div class="card-title"><label for="threshold">SmartShift sensitivity</label><output id="threshold-value">—</output></div><div class="wheel-line"><input id="threshold" type="range" min="1" max="255" aria-label="SmartShift sensitivity"><button id="apply-threshold" class="secondary">Apply</button></div></section>
+</div></section>
+<section id="keyboard" class="keyboard content" hidden>
+<div class="keyboard-hero"><img id="keyboard-art" src="keyboard.svg" alt="Original full-size MX Keys S for Mac illustration, with Mac modifiers, navigation keys, number pad and three Easy-Switch keys"></div>
+<div class="keyboard-cards"><section class="card keyboard-battery"><span class="eyebrow" id="battery-label">BATTERY</span><strong id="keyboard-battery">—</strong><span id="keyboard-power" class="muted">Unknown</span></section><section class="card keyboard-mapping"><div><span class="eyebrow">MAKE IT YOURS</span><h2>Keys & shortcuts</h2><p>Saved key mappings live in OpenLogi.</p></div><button id="keyboard-mappings" class="secondary">Edit in OpenLogi ↗</button></section></div>
+<div class="availability"><span class="info">i</span><span>Backlight, Fn lock and Easy-Switch controls aren’t exposed by this connection yet.</span></div>
+</section>
+<footer role="status" aria-live="polite"><span id="notice">Waiting for OpenLogi…</span><span id="verified" class="muted"></span></footer>
+</main><script src="devices.js"></script></body></html>

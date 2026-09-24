@@ -1,0 +1,294 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 756 242">
+<defs><linearGradient id="case" x2=".2" y2="1"><stop stop-color="#879199"/><stop offset=".12" stop-color="#525c65"/><stop offset=".9" stop-color="#39424b"/><stop offset="1" stop-color="#202933"/></linearGradient><linearGradient id="key" x2=".15" y2="1"><stop stop-color="#353e46"/><stop offset=".8" stop-color="#202931"/><stop offset="1" stop-color="#111920"/></linearGradient><radialGradient id="dish"><stop stop-color="#172129"/><stop offset=".65" stop-color="#1d2730"/><stop offset="1" stop-color="#39434b"/></radialGradient></defs>
+<rect x="6" y="17" width="744" height="221" rx="15" fill="#0a1016"/><rect x="6" y="10" width="744" height="221" rx="15" fill="url(#case)" stroke="#a2abb1" stroke-opacity=".4"/><path d="M18 17H738" stroke="#d0d5d8" opacity=".12"/>
+
+<rect x="20.0" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="20.0" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="35.65" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">esc</text>
+<rect x="55.3" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="55.3" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="70.95" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">☀ F1</text>
+<rect x="90.6" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="90.6" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="106.25" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">☀ F2</text>
+<rect x="125.89999999999999" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="125.89999999999999" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="141.54999999999998" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">▣ F3</text>
+<rect x="161.2" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="161.2" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="176.85" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">⌕ F4</text>
+<rect x="196.5" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="196.5" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="212.15" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">◉ F5</text>
+<rect x="231.79999999999998" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="231.79999999999998" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="247.45" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">☾ F6</text>
+<rect x="267.09999999999997" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="267.09999999999997" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="282.74999999999994" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">◀ F7</text>
+<rect x="302.4" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="302.4" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="318.04999999999995" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">▶ F8</text>
+<rect x="337.7" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="337.7" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="353.34999999999997" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">▶ F9</text>
+<rect x="373.0" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="373.0" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="388.65" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">◁ F10</text>
+<rect x="408.29999999999995" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="408.29999999999995" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="423.94999999999993" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">− F11</text>
+<rect x="443.59999999999997" y="31" width="31.3" height="22" rx="5" fill="#091018"/><rect x="443.59999999999997" y="30" width="31.3" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="459.24999999999994" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">+ F12</text>
+<rect x="20" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="20" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="34.22" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="34.22" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">`</text>
+<rect x="51.44" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="51.44" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="65.66" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="65.66" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">1</text>
+<rect x="82.88" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="82.88" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="97.1" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="97.1" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">2</text>
+<rect x="114.32" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="114.32" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="128.54" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="128.54" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">3</text>
+<rect x="145.75" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="145.75" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="159.97" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="159.97" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">4</text>
+<rect x="177.19" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="177.19" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="191.41" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="191.41" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">5</text>
+<rect x="208.63" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="208.63" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="222.85" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="222.85" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">6</text>
+<rect x="240.07" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="240.07" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="254.29" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="254.29" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">7</text>
+<rect x="271.51" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="271.51" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="285.73" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="285.73" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">8</text>
+<rect x="302.95" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="302.95" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="317.17" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="317.17" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">9</text>
+<rect x="334.38" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="334.38" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="348.6" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="348.6" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">0</text>
+<rect x="365.82" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="365.82" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="380.04" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="380.04" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">−</text>
+<rect x="397.26" y="62" width="28.44" height="29" rx="5" fill="#091018"/><rect x="397.26" y="61" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="411.48" cy="75.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="411.48" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">=</text>
+<rect x="428.7" y="62" width="47.3" height="29" rx="5" fill="#091018"/><rect x="428.7" y="61" width="47.3" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="452.34999999999997" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">delete</text>
+<rect x="20" y="94" width="42.59" height="29" rx="5" fill="#091018"/><rect x="20" y="93" width="42.59" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="41.295" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="41.295" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">tab</text>
+<rect x="65.59" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="65.59" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="79.81" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="79.81" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">Q</text>
+<rect x="97.02" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="97.02" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="111.24" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="111.24" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">W</text>
+<rect x="128.46" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="128.46" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="142.68" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="142.68" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">E</text>
+<rect x="159.9" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="159.9" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="174.12" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="174.12" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">R</text>
+<rect x="191.34" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="191.34" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="205.56" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="205.56" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">T</text>
+<rect x="222.78" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="222.78" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="237.0" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="237.0" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">Y</text>
+<rect x="254.22" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="254.22" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="268.44" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="268.44" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">U</text>
+<rect x="285.65" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="285.65" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="299.87" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="299.87" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">I</text>
+<rect x="317.09" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="317.09" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="331.31" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="331.31" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">O</text>
+<rect x="348.53" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="348.53" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="362.75" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="362.75" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">P</text>
+<rect x="379.97" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="379.97" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="394.19000000000005" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="394.19000000000005" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">[</text>
+<rect x="411.41" y="94" width="28.44" height="29" rx="5" fill="#091018"/><rect x="411.41" y="93" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="425.63000000000005" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="425.63000000000005" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">]</text>
+<rect x="442.85" y="94" width="33.15" height="29" rx="5" fill="#091018"/><rect x="442.85" y="93" width="33.15" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="459.425" cy="107.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="459.425" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">\</text>
+<rect x="20" y="126" width="50.45" height="29" rx="5" fill="#091018"/><rect x="20" y="125" width="50.45" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="45.225" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">caps lock</text>
+<rect x="73.45" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="73.45" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="87.67" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="87.67" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">A</text>
+<rect x="104.88" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="104.88" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="119.1" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="119.1" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">S</text>
+<rect x="136.32" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="136.32" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="150.54" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="150.54" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">D</text>
+<rect x="167.76" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="167.76" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="181.98" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="181.98" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">F</text>
+<path d="M180.47945205479454 148h6" stroke="#71818e" stroke-width=".8"/>
+<rect x="199.2" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="199.2" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="213.42" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="213.42" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">G</text>
+<rect x="230.64" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="230.64" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="244.85999999999999" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="244.85999999999999" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">H</text>
+<rect x="262.08" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="262.08" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="276.3" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="276.3" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">J</text>
+<path d="M274.7945205479452 148h6" stroke="#71818e" stroke-width=".8"/>
+<rect x="293.51" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="293.51" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="307.73" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="307.73" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">K</text>
+<rect x="324.95" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="324.95" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="339.17" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="339.17" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">L</text>
+<rect x="356.39" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="356.39" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="370.61" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="370.61" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">;</text>
+<rect x="387.83" y="126" width="28.44" height="29" rx="5" fill="#091018"/><rect x="387.83" y="125" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="402.05" cy="139.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="402.05" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">&#x27;</text>
+<rect x="419.27" y="126" width="56.73" height="29" rx="5" fill="#091018"/><rect x="419.27" y="125" width="56.73" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="447.635" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">return</text>
+<rect x="20" y="158" width="66.16" height="29" rx="5" fill="#091018"/><rect x="20" y="157" width="66.16" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="53.08" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">shift</text>
+<rect x="89.16" y="158" width="28.44" height="29" rx="5" fill="#091018"/><rect x="89.16" y="157" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="103.38" cy="171.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="103.38" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">Z</text>
+<rect x="120.6" y="158" width="28.44" height="29" rx="5" fill="#091018"/><rect x="120.6" y="157" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="134.82" cy="171.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="134.82" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">X</text>
+<rect x="152.04" y="158" width="28.44" height="29" rx="5" fill="#091018"/><rect x="152.04" y="157" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="166.26" cy="171.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="166.26" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">C</text>
+<rect x="183.48" y="158" width="28.44" height="29" rx="5" fill="#091018"/><rect x="183.48" y="157" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="197.7" cy="171.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="197.7" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">V</text>
+<rect x="214.92" y="158" width="28.44" height="29" rx="5" fill="#091018"/><rect x="214.92" y="157" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="229.14" cy="171.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="229.14" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">B</text>
+<rect x="246.36" y="158" width="28.44" height="29" rx="5" fill="#091018"/><rect x="246.36" y="157" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="260.58000000000004" cy="171.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="260.58000000000004" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">N</text>
+<rect x="277.79" y="158" width="28.44" height="29" rx="5" fill="#091018"/><rect x="277.79" y="157" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="292.01000000000005" cy="171.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="292.01000000000005" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">M</text>
+<rect x="309.23" y="158" width="28.44" height="29" rx="5" fill="#091018"/><rect x="309.23" y="157" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="323.45000000000005" cy="171.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="323.45000000000005" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">,</text>
+<rect x="340.67" y="158" width="28.44" height="29" rx="5" fill="#091018"/><rect x="340.67" y="157" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="354.89000000000004" cy="171.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="354.89000000000004" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">.</text>
+<rect x="372.11" y="158" width="28.44" height="29" rx="5" fill="#091018"/><rect x="372.11" y="157" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="386.33000000000004" cy="171.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="386.33000000000004" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">/</text>
+<rect x="403.55" y="158" width="72.45" height="29" rx="5" fill="#091018"/><rect x="403.55" y="157" width="72.45" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="439.77500000000003" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">shift</text>
+<rect x="20" y="190" width="28.44" height="29" rx="5" fill="#091018"/><rect x="20" y="189" width="28.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="34.22" cy="203.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="34.22" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">fn</text>
+<rect x="51.44" y="190" width="33.15" height="29" rx="5" fill="#091018"/><rect x="51.44" y="189" width="33.15" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="68.015" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">control</text>
+<rect x="87.59" y="190" width="33.15" height="29" rx="5" fill="#091018"/><rect x="87.59" y="189" width="33.15" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="104.165" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">option</text>
+<rect x="123.75" y="190" width="39.44" height="29" rx="5" fill="#091018"/><rect x="123.75" y="189" width="39.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="143.47" cy="203.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="143.47" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">⌘</text>
+<rect x="166.19" y="190" width="195.06" height="29" rx="5" fill="#091018"/><rect x="166.19" y="189" width="195.06" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="263.72" cy="203.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="263.72" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle"></text>
+<rect x="364.25" y="190" width="39.44" height="29" rx="5" fill="#091018"/><rect x="364.25" y="189" width="39.44" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="383.97" cy="203.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="383.97" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">⌘</text>
+<rect x="406.69" y="190" width="33.15" height="29" rx="5" fill="#091018"/><rect x="406.69" y="189" width="33.15" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="423.265" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">option</text>
+<rect x="442.85" y="190" width="33.15" height="29" rx="5" fill="#091018"/><rect x="442.85" y="189" width="33.15" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="459.425" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">control</text>
+<rect x="494" y="31" width="28" height="22" rx="5" fill="#091018"/><rect x="494" y="30" width="28" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="508.0" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#a8dcce" text-anchor="middle">1</text>
+<rect x="526" y="31" width="28" height="22" rx="5" fill="#091018"/><rect x="526" y="30" width="28" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="540.0" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#a8dcce" text-anchor="middle">2</text>
+<rect x="558" y="31" width="28" height="22" rx="5" fill="#091018"/><rect x="558" y="30" width="28" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="572.0" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#a8dcce" text-anchor="middle">3</text>
+<rect x="494" y="62" width="28" height="29" rx="5" fill="#091018"/><rect x="494" y="61" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="508.0" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">fn</text>
+<rect x="526" y="62" width="28" height="29" rx="5" fill="#091018"/><rect x="526" y="61" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="540.0" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">home</text>
+<rect x="558" y="62" width="28" height="29" rx="5" fill="#091018"/><rect x="558" y="61" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="572.0" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">pg up</text>
+<rect x="494" y="94" width="28" height="29" rx="5" fill="#091018"/><rect x="494" y="93" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="508.0" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">del</text>
+<rect x="526" y="94" width="28" height="29" rx="5" fill="#091018"/><rect x="526" y="93" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="540.0" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">end</text>
+<rect x="558" y="94" width="28" height="29" rx="5" fill="#091018"/><rect x="558" y="93" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="572.0" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">pg dn</text>
+<rect x="526" y="158" width="28" height="29" rx="5" fill="#091018"/><rect x="526" y="157" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="540.0" cy="171.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="540.0" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">↑</text>
+<rect x="494" y="190" width="28" height="29" rx="5" fill="#091018"/><rect x="494" y="189" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="508.0" cy="203.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="508.0" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">←</text>
+<rect x="526" y="190" width="28" height="29" rx="5" fill="#091018"/><rect x="526" y="189" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="540.0" cy="203.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="540.0" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">↓</text>
+<rect x="558" y="190" width="28" height="29" rx="5" fill="#091018"/><rect x="558" y="189" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="572.0" cy="203.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="572.0" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">→</text>
+<rect x="601" y="31" width="28" height="22" rx="5" fill="#091018"/><rect x="601" y="30" width="28" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="615.0" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">◉</text>
+<rect x="633" y="31" width="28" height="22" rx="5" fill="#091018"/><rect x="633" y="30" width="28" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="647.0" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">✂</text>
+<rect x="665" y="31" width="28" height="22" rx="5" fill="#091018"/><rect x="665" y="30" width="28" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="679.0" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">▣</text>
+<rect x="697" y="31" width="28" height="22" rx="5" fill="#091018"/><rect x="697" y="30" width="28" height="21" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="711.0" y="44.0" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">⌑</text>
+<rect x="601" y="62" width="28" height="29" rx="5" fill="#091018"/><rect x="601" y="61" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="615.0" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">clear</text>
+<rect x="633" y="62" width="28" height="29" rx="5" fill="#091018"/><rect x="633" y="61" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="647.0" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">=</text>
+<rect x="665" y="62" width="28" height="29" rx="5" fill="#091018"/><rect x="665" y="61" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="679.0" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">/</text>
+<rect x="697" y="62" width="28" height="29" rx="5" fill="#091018"/><rect x="697" y="61" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="711.0" y="78.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">*</text>
+<rect x="601" y="94" width="28" height="29" rx="5" fill="#091018"/><rect x="601" y="93" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="615.0" cy="107.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="615.0" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">7</text>
+<rect x="633" y="94" width="28" height="29" rx="5" fill="#091018"/><rect x="633" y="93" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="647.0" cy="107.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="647.0" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">8</text>
+<rect x="665" y="94" width="28" height="29" rx="5" fill="#091018"/><rect x="665" y="93" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="679.0" cy="107.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="679.0" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">9</text>
+<rect x="697" y="94" width="28" height="29" rx="5" fill="#091018"/><rect x="697" y="93" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="711.0" cy="107.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="711.0" y="110.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">−</text>
+<rect x="601" y="126" width="28" height="29" rx="5" fill="#091018"/><rect x="601" y="125" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="615.0" cy="139.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="615.0" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">4</text>
+<rect x="633" y="126" width="28" height="29" rx="5" fill="#091018"/><rect x="633" y="125" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="647.0" cy="139.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="647.0" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">5</text>
+<rect x="665" y="126" width="28" height="29" rx="5" fill="#091018"/><rect x="665" y="125" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="679.0" cy="139.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="679.0" y="142.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">6</text>
+<rect x="697" y="126" width="28" height="61" rx="5" fill="#091018"/><rect x="697" y="125" width="28" height="60" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="711.0" cy="155.0" rx="12.0" ry="12" fill="url(#dish)" opacity=".9"/>
+<text x="711.0" y="158.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">+</text>
+<rect x="601" y="158" width="28" height="29" rx="5" fill="#091018"/><rect x="601" y="157" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="615.0" cy="171.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="615.0" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">1</text>
+<rect x="633" y="158" width="28" height="29" rx="5" fill="#091018"/><rect x="633" y="157" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="647.0" cy="171.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="647.0" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">2</text>
+<rect x="665" y="158" width="28" height="29" rx="5" fill="#091018"/><rect x="665" y="157" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="679.0" cy="171.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="679.0" y="174.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">3</text>
+<rect x="601" y="190" width="60" height="29" rx="5" fill="#091018"/><rect x="601" y="189" width="60" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="631.0" cy="203.0" rx="12" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="631.0" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">0</text>
+<rect x="665" y="190" width="28" height="29" rx="5" fill="#091018"/><rect x="665" y="189" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<ellipse cx="679.0" cy="203.0" rx="12.0" ry="12.0" fill="url(#dish)" opacity=".9"/>
+<text x="679.0" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="10" fill="#d6dde2" text-anchor="middle">.</text>
+<rect x="697" y="190" width="28" height="29" rx="5" fill="#091018"/><rect x="697" y="189" width="28" height="28" rx="5" fill="url(#key)" stroke="#72808b" stroke-opacity=".35" stroke-width=".7"/>
+<text x="711.0" y="206.5" font-family="-apple-system,Helvetica,Arial,sans-serif" font-size="8" fill="#d6dde2" text-anchor="middle">enter</text>
+<circle cx="728" cy="20" r="1.5" fill="#a0dec0"/><path d="M23 226H730" stroke="#b5bec6" opacity=".12"/></svg>

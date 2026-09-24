@@ -1,6 +1,23 @@
 # Logitech module status
 
-0.2.0 development preview, September 22, 2026.
+0.3.0 development preview, September 24, 2026.
+
+## Device experience upgrade — 0.3.0
+
+Installed independently through NeroNook's package review; host remains 0.23.0 with no runtime changes. Mouse and Keyboard are persistent separate panels, each with its own exact remembered device. Setup moved behind the gear. The Nook and standalone window share packaged custom HTML/SVG surfaces using the current public SDK. Original illustrations include an asymmetric MX Master 3S body, thumb wing, two metal wheels, and a full-size Mac keyboard with navigation cluster, number pad and Mac modifiers. Unknown device models get generic artwork.
+
+DPI presets and all advertised DPI values, wheel mode and SmartShift sensitivity can be edited and applied directly in the Nook. Drafts do not write. Each write retains the exact mouse target, goes through OpenLogi and requires its read-back; no automatic retry. A missing remembered device stays unavailable. Existing keyboard selection migrated to its own tab without losing the mouse selection.
+
+Validation: 15 Swift tests pass, including five migration/selection/unavailable/stale-target cases. Signed release build, strict signature verification and read-only protocol harness pass. The harness verifies separate custom panel identities, bounded view state, the single status line and invalid-action refusal. The SDK hashes are recorded in SDK-SNAPSHOT.json.
+
+Live acceptance: installed native Mouse and Keyboard views were inspected. MX Master 3S reported 20% battery, 2000 DPI, Ratchet, sensitivity 20 and torque 0; MX Keys S for Mac reported charging, rising from 90% to 95% during the check. Native Apply DPI and Apply mode at the existing values returned confirmed read-back. The first Nook pass exposed sensitivity clipping due to the host header/tab budget; corrected viewport scaling to consider height as well as width, removed duplicate host action buttons, rebuilt and reinstalled. Final Odyssey Ark Nook screenshots show both tabs fully fitting. Apply sensitivity at existing 20 completed directly in the Nook with confirmed preservation of other fields. Ark selection was restored to Bambu Monitor and the temporary pin removed.
+
+Keyboard backlight, Fn lock, Easy-Switch events/commands and in-module remapping remain unavailable. Source inspection found agent read_backlight IPC and a separate direct-HID diagnostic command, but the installed agent-backed control CLI has no keyboard-setting commands. The direct-HID path is intentionally not used. Latest official OpenLogi release is v0.8.7 (checked September 24); PR #1563 remains open. No OpenLogi build, hardware permissions, profiles or upstream PR were changed in this pass. Future upstream work must start by refreshing the release/base and preserving the existing PR.
+
+Outstanding: reconnect/login/reboot acceptance, other hardware models, further artwork review, keyboard command/event integration and physical Stream Deck device-action routing.
+
+## Earlier verification
+
 
 ## Verified
 
