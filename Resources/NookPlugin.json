@@ -1,14 +1,16 @@
 {
   "id": "cafe.nero.plugin.logitech",
   "name": "Logitech",
-  "version": "0.3.0",
+  "version": "0.5.4",
   "apiVersion": 1,
-  "summary": "Dedicated mouse and keyboard surfaces, with direct DPI and SmartShift controls through OpenLogi.",
+  "summary": "Mouse controls and optional keyboard connection, battery and Easy-Switch events.",
   "capabilities": [
     "Runs the selected OpenLogi application's agent-backed control commands",
     "Reads device status, battery, supported DPI and wheel settings",
     "Applies explicitly requested temporary settings and checks read-back",
-    "Exports reviewed DPI and wheel actions through the shared plugin SDK"
+    "Exports reviewed DPI and wheel actions through the shared plugin SDK",
+    "Publishes only fresh changes from the selected keyboard when its watch is enabled; no typing capture or startup replay",
+    "Enables the selected keyboard host-button watch through OpenLogi and publishes only fresh channel choices; does not divert typing or change hosts"
   ],
   "icon": {
     "symbol": "computermouse.fill",

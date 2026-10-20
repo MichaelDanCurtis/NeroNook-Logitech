@@ -1,3 +1,29 @@
+## October 17 · local redesign qualification — 0.5.2
+
+Signed and installed through module review. All mouse cards fit above the status
+line; keyboard details scroll within the fixed stage. Native same-value 2,000 DPI
+apply/read-back passes. Mouse/keyboard targets and watch preferences retained.
+25 tests and read-only live protocol pass. No OpenLogi or profile change.
+[Evidence and remaining acceptance](reports/redesign-live-2026-10-17/README.md).
+
+## October 14 · keyboard events — 0.4.0
+
+Installed independently with host 0.28.1. Keyboard primary-card Watch changes,
+Stop watching and threshold controls inspected with MX Keys S for Mac at 100%.
+Native Arm/Disarm and recorded low-battery workflow simulation pass. Watching
+ends Off, threshold 20%, example disarmed. Exact mouse/keyboard/OpenLogi choices
+retained. Both monitor layouts fit; no setup tab added.
+
+23 module tests, signed isolated fake-inventory process and read-only live
+protocol checks pass; host has 88 passing tests. All 13 other plugin records,
+26 prior grants and four original workflows retained. No OpenLogi build/profile,
+HID access, hardware write or permission changes. First/stale/error/reconnect
+samples establish quiet baselines. Real keyboard power and battery transitions,
+reboot and prolonged use remain unverified. Easy-Switch and keyboard commands
+remain a newer public OpenLogi API follow-up.
+
+[Usage](KEYBOARD-EVENTS.md) · [receipts](reports/keyboard-events-2026-10-14/README.md).
+
 # Logitech module status
 
 0.3.0 development preview, September 24, 2026.

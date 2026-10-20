@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "id": "42E960B6-C2CE-4F7A-B1AE-82636677DEB7",
+  "title": "Keyboard \u2014 low battery notice",
+  "nodes": [
+    {
+      "id": "keyboard",
+      "position": {
+        "x": 80,
+        "y": 180
+      },
+      "data": {
+        "arguments": {},
+        "kind": "event",
+        "title": "Keyboard changes",
+        "address": {
+          "plugin": "cafe.nero.plugin.logitech",
+          "name": "keyboard_events"
+        },
+        "channel": {
+          "id": "keyboard_events",
+          "title": "Logitech keyboard connection and battery changes",
+          "kind": "event",
+          "schema": {
+            "fields": [
+              {
+                "name": "event_id",
+                "kind": "string",
+                "required": true
+              },
+              {
+                "name": "device",
+                "kind": "string",
+                "required": true
+              },
+              {
+                "name": "kind",
+                "kind": "string",
+                "required": true
+              },
+              {
+                "name": "connected",
+                "kind": "boolean",
+                "required": true
+              },
+              {
+                "name": "battery",
+                "kind": "number",
+                "required": false,
+                "minimum": 0,
+                "maximum": 100
+              },
+              {
+                "name": "observed_at",
+                "kind": "number",
+                "required": true,
+                "minimum": 0
+              },
+              {
+                "name": "message",
+                "kind": "string",
+                "required": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "filter",
+      "position": {
+        "x": 390,
+        "y": 180
+      },
+      "data": {
+        "arguments": {},
+        "kind": "condition",
+        "title": "Low battery only",
+        "test": {
+          "source": "keyboard",
+          "field": "kind"
+        },
+        "comparison": "equals",
+        "expected": "low_battery"
+      }
+    },
+    {
+      "id": "notice",
+      "position": {
+        "x": 700,
+        "y": 180
+      },
+      "data": {
+        "arguments": {
+          "message": {
+            "source": "keyboard",
+            "field": "message"
+          }
+        },
+        "kind": "action",
+        "title": "Show a notice in the Nook",
+        "address": {
+          "plugin": "local.neronook.utilities",
+          "name": "notice"
+        },
+        "action": {
+          "id": "notice",
+          "title": "Show a notice in the Nook",
+          "effect": "localChange",
+          "input": {
+            "fields": [
+              {
+                "name": "message",
+                "kind": "string",
+                "required": true
+              }
+            ]
+          },
+          "output": {
+            "fields": []
+          },
+          "cancellable": false,
+          "timeoutSeconds": 30
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "E472D445-ABCE-40AA-B419-AE6AF24C3B30",
+      "source": "keyboard",
+      "target": "filter",
+      "sourceHandle": "next"
+    },
+    {
+      "id": "DF38E67F-2311-422B-9E49-700B3B2BC9B7",
+      "source": "filter",
+      "target": "notice",
+      "sourceHandle": "yes"
+    }
+  ]
+}
