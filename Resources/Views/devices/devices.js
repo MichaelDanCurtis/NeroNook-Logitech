@@ -71,6 +71,17 @@
       ['apply-wheel','apply-threshold'].forEach(id => $(id).disabled = wheelOff || s.busy);
       updateDraftControls();
     }
+    $('host-watch-card').hidden=mouse;
+    $('host-watch').textContent=s.host_switch_enabled?'Stop Easy-Switch watch':'Watch Easy-Switch';
+    $('host-watch').disabled=s.busy||(!s.host_switch_enabled&&(!s.host_switch_supported||!s.events_ready));
+    $('host-watch-status').textContent=s.host_switch_supported?s.host_switch_status:'OpenLogi needs its new host-switch event API';
+    $('watch-keyboard').textContent = s.events_enabled ? 'Stop watching' : 'Watch changes';
+    $('watch-keyboard').setAttribute('aria-pressed', s.events_enabled ? 'true' : 'false');
+    $('watch-keyboard').disabled = s.busy || (!s.events_enabled && !s.events_ready);
+    if (document.activeElement !== $('low-battery')) $('low-battery').value = s.low_battery || 20;
+    $('low-battery').disabled = s.busy;
+    $('last-event').textContent = s.events_enabled ? s.last_event : 'Off · no typing or key capture';
+    $('last-event').title = $('last-event').textContent;
     $('notice').textContent = s.notice || (!s.ready ? s.status : mouse ? 'Temporary settings · saved profiles stay in OpenLogi' : 'Live device status · connected through OpenLogi');
     $('notice').title = $('notice').textContent;
     $('notice').classList.toggle('notice', !!s.notice);
@@ -86,5 +97,8 @@
   $('apply-dpi').onclick = () => emit('dpi',withTarget({value:Number(draft.dpi)}));
   $('apply-wheel').onclick = () => emit('wheel',withTarget({mode:draft.mode}));
   $('apply-threshold').onclick = () => emit('threshold',withTarget({value:Number(draft.threshold)}));
+  $('host-watch').onclick=()=>emit('host_watch',withTarget({enabled:!state.host_switch_enabled}));
+  $('watch-keyboard').onclick = () => emit('keyboard_watch',withTarget({enabled:!state.events_enabled,threshold:Number($('low-battery').value)}));
+  $('low-battery').onchange = () => emit('keyboard_watch',withTarget({enabled:!!state.events_enabled,threshold:Number($('low-battery').value)}));
   window.nero?.onState(render);
 })();

@@ -13,8 +13,11 @@ public struct DeviceSelection: Codable, Sendable {
     public var mouse = ""
     public var keyboard = ""
     public var tab: DeviceKind = .mouse
+    public var hostSwitchEvents = false
+    public var keyboardEvents = false
+    public var keyboardLowBattery = 20
     public init() {}
-    private enum CodingKeys: String, CodingKey { case application, device, mouse, keyboard, tab }
+    private enum CodingKeys: String, CodingKey { case application, device, mouse, keyboard, tab, keyboardEvents, keyboardLowBattery, hostSwitchEvents }
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         application = try c.decodeIfPresent(String.self, forKey: .application) ?? application
@@ -22,6 +25,10 @@ public struct DeviceSelection: Codable, Sendable {
         mouse = try c.decodeIfPresent(String.self, forKey: .mouse) ?? ""
         keyboard = try c.decodeIfPresent(String.self, forKey: .keyboard) ?? ""
         tab = try c.decodeIfPresent(DeviceKind.self, forKey: .tab) ?? .mouse
+        hostSwitchEvents = try c.decodeIfPresent(Bool.self, forKey: .hostSwitchEvents) ?? false
+        keyboardEvents = try c.decodeIfPresent(Bool.self, forKey: .keyboardEvents) ?? false
+        keyboardLowBattery = try c.decodeIfPresent(Int.self, forKey: .keyboardLowBattery) ?? 20
+        guard (1...50).contains(keyboardLowBattery) else { throw BridgeProblem("Keyboard battery threshold must be 1–50%.") }
     }
     public func id(for kind: DeviceKind) -> String { kind == .mouse ? mouse : keyboard }
     public mutating func select(_ id: String, kind: DeviceKind, inventory: Inventory) throws {

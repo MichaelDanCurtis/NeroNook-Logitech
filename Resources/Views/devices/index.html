@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="devices.css"><title>Logitech devices</title></head>
+<!doctype html><html lang="en" data-nook-ui><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="devices.css"><title>Logitech devices</title></head>
 <body><main>
 <header><div class="heading"><span class="eyebrow" id="category">YOUR DEVICES</span><select id="device" aria-label="Device"></select></div><div id="connection" class="connection">Connecting</div><button class="icon" id="refresh" aria-label="Refresh devices" title="Refresh devices">↻</button><button class="icon" id="settings" aria-label="Device setup" title="Device setup"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3 6 0 1 3 3 1 2 5-2 5-3 1-1 3H9l-1-3-3-1-2-5 2-5 3-1Z"/><circle cx="12" cy="12" r="3"/></svg></button></header>
 <section id="mouse" class="mouse content" hidden>
@@ -11,7 +11,9 @@
 <section id="keyboard" class="keyboard content" hidden>
 <div class="keyboard-hero"><img id="keyboard-art" src="keyboard.svg" alt="Original full-size MX Keys S for Mac illustration, with Mac modifiers, navigation keys, number pad and three Easy-Switch keys"></div>
 <div class="keyboard-cards"><section class="card keyboard-battery"><span class="eyebrow" id="battery-label">BATTERY</span><strong id="keyboard-battery">—</strong><span id="keyboard-power" class="muted">Unknown</span></section><section class="card keyboard-mapping"><div><span class="eyebrow">MAKE IT YOURS</span><h2>Keys & shortcuts</h2><p>Saved key mappings live in OpenLogi.</p></div><button id="keyboard-mappings" class="secondary">Edit in OpenLogi ↗</button></section></div>
-<div class="availability"><span class="info">i</span><span>Backlight, Fn lock and Easy-Switch controls aren’t exposed by this connection yet.</span></div>
+<section class="keyboard-events card"><div class="event-copy"><span class="eyebrow">AUTOMATIONS</span><strong>Connection & battery</strong><span id="last-event" class="muted">Events are off</span></div><div class="event-options"><label for="low-battery">Low at</label><input id="low-battery" type="number" min="1" max="50" step="1" value="20" aria-label="Low battery threshold"><span>%</span><button id="watch-keyboard" class="secondary" aria-pressed="false">Watch changes</button></div></section>
+<div class="availability"><span class="info">i</span><span>Backlight and Fn lock stay in OpenLogi.</span></div>
 </section>
+<div id="host-watch-card" class="host-watch-card" hidden><div><span class="eyebrow">EASY-SWITCH</span><strong>Publish channel choices</strong><span id="host-watch-status">OpenLogi update needed</span></div><button id="host-watch">Watch Easy-Switch</button></div>
 <footer role="status" aria-live="polite"><span id="notice">Waiting for OpenLogi…</span><span id="verified" class="muted"></span></footer>
 </main><script src="devices.js"></script></body></html>

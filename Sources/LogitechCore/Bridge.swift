@@ -56,17 +56,62 @@ public protocol CommandRunner: Sendable {
     func run(_ executable: URL, arguments: [String]) async throws -> Data
 }
 public actor LogitechBridge {
+    public enum Format: Equatable, Sendable { case legacy, api, automatic }
     private let runner: any CommandRunner
-    public init(runner: any CommandRunner = ProcessRunner()) { self.runner = runner }
+    private let format: Format
+    private var formats: [String: Format] = [:]
+    public init(runner: any CommandRunner = ProcessRunner(), format: Format = .legacy) { self.runner = runner; self.format = format }
+    private func connectionFormat(_ exe: URL) async throws -> Format {
+        if format != .automatic { return format }
+        let stamp = (try? exe.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate)?.timeIntervalSince1970 ?? 0
+        let key = exe.path + "|" + String(stamp)
+        if let cached = formats[key] { return cached }
+        let help = String(decoding: try await runner.run(exe, arguments: ["--help"]), as: UTF8.self)
+        let found: Format = help.split(separator: "\n").contains(where: { $0.trimmingCharacters(in: .whitespaces).hasPrefix("api ") }) ? .api : .legacy
+        formats = [key: found]; return found
+    }
+    public func supportsHostSwitch(_ exe: URL) async throws -> Bool {
+        guard try await connectionFormat(exe) == .api else { return false }
+        let help = String(decoding: try await runner.run(exe, arguments: ["api", "--help"]), as: UTF8.self)
+        return help.contains("host-switch-events") && help.contains("watch-host-switch")
+    }
+    public func setHostSwitchEvents(_ exe: URL, id: String, enabled: Bool) async throws {
+        let found = try await inventory(exe)
+        let matches = found.devices.filter { $0.id == id }
+        guard matches.count == 1, matches[0].isKeyboard, !enabled || matches[0].online, try await supportsHostSwitch(exe) else { throw BridgeProblem("This OpenLogi connection cannot publish Easy-Switch choices yet.") }
+        let bytes = try await runner.run(exe, arguments: ["api", "--save", "host-switch-events", "--device", id, "--set", enabled ? "on" : "off"])
+        guard let envelope = try JSONSerialization.jsonObject(with: bytes) as? [String: Any], envelope["schema_version"] as? Int == 1, envelope["ok"] as? Bool == true,
+              let data = envelope["data"] as? [String: Any], data["device"] as? String == id, data["host_switch_events"] as? Bool == enabled, data["persistence"] as? String == "saved" else {
+            throw BridgeProblem("OpenLogi did not confirm saving its host-button watch. No retry was sent.")
+        }
+    }
     private func command<T: Decodable>(_ executable: URL, _ arguments: [String], as: T.Type) async throws -> T {
-        let data = try await runner.run(executable, arguments: ["control"] + arguments)
+        let mode = try await connectionFormat(executable)
+        let translated = mode == .api ? arguments.map { $0 == "--threshold" ? "--auto-disengage" : $0 } : arguments
+        let bytes = try await runner.run(executable, arguments: [mode == .api ? "api" : "control"] + translated)
+        let data: Data
+        if mode == .api {
+            guard let envelope = try JSONSerialization.jsonObject(with: bytes) as? [String: Any], envelope["schema_version"] as? Int == 1, envelope["ok"] as? Bool == true,
+                  let result = envelope["data"] as? [String: Any] else { throw BridgeProblem("OpenLogi API did not return a supported successful response. No retry was sent.") }
+            var normalized: [String: Any]
+            if arguments.first == "devices" {
+                guard let health = result["inventory"] as? String, ["ready", "scanning", "unavailable"].contains(health) else { throw BridgeProblem("OpenLogi returned an unknown inventory state.") }
+                normalized = ["schema_version":1,"protocol_version":0,"agent_version":"matched by OpenLogi API","inventory_health":health.capitalized,"devices":result["devices"] ?? []]
+            } else {
+                let current: [String: Any]
+                if arguments.first == "dpi" { current = ["current":result["current"] ?? NSNull(),"capabilities":["values":result["supported"] ?? []]] }
+                else { current = ["mode":result["mode"] ?? NSNull(),"auto_disengage":result["auto_disengage"] ?? NSNull(),"tunable_torque":result["tunable_torque"] ?? NSNull()] }
+                normalized = ["schema_version":1,"device":result["device"] ?? NSNull(),"written":arguments.contains("--set") || arguments.contains("--mode") || arguments.contains("--threshold"),"current":current]
+            }
+            data = try JSONSerialization.data(withJSONObject: normalized)
+        } else { data = bytes }
         let decoder = JSONDecoder(); decoder.keyDecodingStrategy = .convertFromSnakeCase
         do { return try decoder.decode(T.self, from: data) }
         catch { throw BridgeProblem("OpenLogi returned an unsupported response. Install a matching CLI and agent build (protocol 32).") }
     }
     public func inventory(_ exe: URL) async throws -> Inventory {
         let value = try await command(exe, ["devices"], as: Inventory.self)
-        guard value.schemaVersion == 1, value.protocolVersion == 32 else { throw BridgeProblem("This module needs OpenLogi protocol 32. Update the CLI and agent together.") }
+        guard value.schemaVersion == 1, value.protocolVersion == (try await connectionFormat(exe) == .api ? 0 : 32) else { throw BridgeProblem("This module needs OpenLogi protocol 32. Update the CLI and agent together.") }
         return value
     }
     private func validate<T>(_ value: Setting<T>, id: String, written: Bool) throws -> T {
